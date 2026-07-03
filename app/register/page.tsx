@@ -51,14 +51,14 @@ export default function RegisterPage() {
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-4"
-      style={{ background: 'linear-gradient(135deg, #1e3a5f 0%, #0ea5e9 100%)' }}>
+      style={{ background: 'linear-gradient(135deg, #C97B5A 0%, #C97B5A 100%)' }}>
       <div className="text-center mb-8">
         <div className="text-5xl mb-3">🚗</div>
         <h1 className="text-3xl font-bold text-white">AutoFamilia</h1>
       </div>
 
       <div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-sm">
-        <h2 className="text-xl font-bold mb-6" style={{ color: '#1e3a5f' }}>Crear cuenta gratis</h2>
+        <h2 className="text-xl font-bold mb-6" style={{ color: '#C97B5A' }}>Crear cuenta gratis</h2>
 
         <form onSubmit={handleRegister} className="space-y-4">
           <div>
@@ -111,7 +111,7 @@ export default function RegisterPage() {
                   type="button"
                   onClick={() => setShowTerms(!showTerms)}
                   className="font-semibold underline"
-                  style={{ color: '#0ea5e9' }}>
+                  style={{ color: '#C97B5A' }}>
                   Términos y Condiciones
                 </button>
                 , incluyendo el aviso legal sobre los datos de mantenimiento.
@@ -147,14 +147,14 @@ export default function RegisterPage() {
             type="submit"
             disabled={loading || !termsAccepted}
             className="w-full py-4 rounded-2xl font-bold text-white transition-all hover:opacity-90 disabled:opacity-60"
-            style={{ background: '#10b981' }}>
+            style={{ background: '#7CB897' }}>
             {loading ? 'Creando cuenta...' : 'Crear cuenta gratis'}
           </button>
         </form>
 
         <p className="text-center text-sm text-gray-500 mt-6">
           ¿Ya tenés cuenta?{' '}
-          <Link href="/login" className="font-semibold" style={{ color: '#0ea5e9' }}>
+          <Link href="/login" className="font-semibold" style={{ color: '#C97B5A' }}>
             Iniciá sesión
           </Link>
         </p>

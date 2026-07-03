@@ -63,7 +63,7 @@ export default function NewVehiclePage() {
 
   return (
     <div className="min-h-screen" style={{ background: '#f0f4f8' }}>
-      <header style={{ background: '#1e3a5f' }} className="px-6 py-5 flex items-center gap-4">
+      <header style={{ background: '#C97B5A' }} className="px-6 py-5 flex items-center gap-4">
         <Link href="/dashboard" className="text-blue-200 hover:text-white">← Volver</Link>
         <h1 className="text-white text-lg font-bold">Registrar auto</h1>
       </header>
@@ -73,7 +73,7 @@ export default function NewVehiclePage() {
 
           {/* Marca y Modelo */}
           <div className="bg-white rounded-3xl p-5 shadow-sm">
-            <h2 className="font-bold mb-4" style={{ color: '#1e3a5f' }}>Datos del vehículo</h2>
+            <h2 className="font-bold mb-4" style={{ color: '#C97B5A' }}>Datos del vehículo</h2>
 
             <label className="block text-sm font-medium text-gray-600 mb-1">Marca y Modelo</label>
             <select
@@ -190,7 +190,7 @@ export default function NewVehiclePage() {
             type="submit"
             disabled={loading}
             className="w-full py-4 rounded-2xl font-bold text-white transition-all hover:opacity-90 disabled:opacity-60"
-            style={{ background: '#1e3a5f' }}>
+            style={{ background: '#C97B5A' }}>
             {loading ? 'Guardando...' : 'Registrar auto'}
           </button>
         </form>

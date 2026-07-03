@@ -39,21 +39,21 @@ export default async function VehicleDetailPage({ params }: { params: Promise<{ 
   const normalPendingTasks = pendingTasks.filter(t => t.severity !== 'critical')
 
   return (
-    <div className="min-h-screen" style={{ background: '#f0f4f8' }}>
-      <header style={{ background: '#1e3a5f' }} className="px-6 py-5">
-        <Link href="/dashboard" className="text-blue-200 hover:text-white text-sm">← Mis autos</Link>
+    <div className="min-h-screen" style={{ background: '#FFF5F2' }}>
+      <header style={{ background: '#C97B5A' }} className="px-6 py-5">
+        <Link href="/dashboard" className="text-sm hover:text-white" style={{ color: '#F5DDD6' }}>← Mis autos</Link>
         <h1 className="text-white text-xl font-bold mt-1">
           {vehicle.nickname || `${vehicle.brand} ${vehicle.model}`}
         </h1>
-        <p className="text-blue-200 text-sm">{vehicle.year} · {vehicle.version} · {vehicle.engine}</p>
+        <p className="text-sm" style={{ color: '#F5DDD6' }}>{vehicle.year} · {vehicle.version} · {vehicle.engine}</p>
       </header>
 
       <div className="px-4 py-6 max-w-lg mx-auto space-y-4">
 
         {/* KM actual */}
         <div className="bg-white rounded-3xl p-5 shadow-sm text-center">
-          <p className="text-gray-400 text-sm mb-1">Kilometraje actual</p>
-          <p className="text-4xl font-bold" style={{ color: '#1e3a5f' }}>
+          <p className="text-sm mb-1" style={{ color: '#C49080' }}>Kilometraje actual</p>
+          <p className="text-4xl font-bold" style={{ color: '#5C2A1E' }}>
             {vehicle.current_km.toLocaleString()} km
           </p>
           <UpdateKmForm vehicleId={vehicle.id} currentKm={vehicle.current_km} />
@@ -69,17 +69,17 @@ export default async function VehicleDetailPage({ params }: { params: Promise<{ 
 
         {/* Próximos mantenimientos */}
         {upcomingTasks.length > 0 && (
-          <div className="bg-amber-50 border-2 border-amber-200 rounded-3xl p-5 shadow-sm">
-            <h2 className="font-bold mb-3 text-amber-800">⏳ Se viene pronto (próximos 5,000 km)</h2>
+          <div className="rounded-3xl p-5 shadow-sm" style={{ background: '#FEF6EE', border: '1px solid #F5DDD6' }}>
+            <h2 className="font-bold mb-3" style={{ color: '#8B4A36' }}>⏳ Se viene pronto (próximos 5,000 km)</h2>
             <div className="space-y-2">
               {upcomingTasks.map(task => (
-                <div key={task.km} className="bg-white rounded-2xl p-3">
+                <div key={task.km} className="bg-white rounded-2xl p-3" style={{ border: '1px solid #F5DDD6' }}>
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="font-semibold text-sm text-gray-800">{task.task}</p>
-                      <p className="text-xs text-gray-400 mt-1">{task.description}</p>
+                      <p className="font-semibold text-sm" style={{ color: '#5C2A1E' }}>{task.task}</p>
+                      <p className="text-xs mt-1" style={{ color: '#C49080' }}>{task.description}</p>
                     </div>
-                    <span className="text-xs font-bold text-amber-600 ml-2 whitespace-nowrap">
+                    <span className="text-xs font-bold ml-2 whitespace-nowrap" style={{ color: '#C97B5A' }}>
                       a los {task.km.toLocaleString()} km
                     </span>
                   </div>
@@ -89,21 +89,21 @@ export default async function VehicleDetailPage({ params }: { params: Promise<{ 
           </div>
         )}
 
-        {/* URGENTES - no realizados y críticos */}
+        {/* URGENTES */}
         {urgentTasks.length > 0 && (
-          <div className="rounded-3xl overflow-hidden shadow-lg border-2 border-red-500">
-            <div className="bg-red-600 px-5 py-4 flex items-center gap-3">
-              <span className="text-3xl">🚨</span>
+          <div className="rounded-3xl overflow-hidden shadow-md" style={{ border: '2px solid #D94F3D' }}>
+            <div className="px-5 py-4 flex items-center gap-3" style={{ background: '#D94F3D' }}>
+              <span className="text-2xl">🚨</span>
               <div>
-                <p className="text-white font-black text-base">
-                  {urgentTasks.length} MANTENIMIENTO{urgentTasks.length > 1 ? 'S' : ''} CRÍTICO{urgentTasks.length > 1 ? 'S' : ''} PENDIENTE{urgentTasks.length > 1 ? 'S' : ''}
+                <p className="text-white font-bold text-base">
+                  {urgentTasks.length} mantenimiento{urgentTasks.length > 1 ? 's' : ''} urgente{urgentTasks.length > 1 ? 's' : ''}
                 </p>
-                <p className="text-red-100 text-xs">Tu seguridad y la de tu familia está en riesgo</p>
+                <p className="text-xs" style={{ color: '#FFD5CC' }}>Tu familia viaja más segura cuando revisás esto</p>
               </div>
             </div>
-            <div className="bg-red-50 p-5">
-              <p className="text-red-700 text-sm font-semibold mb-3">
-                Tildá los que ya realizaste para registrarlos:
+            <div className="p-5" style={{ background: '#FFF5F2' }}>
+              <p className="text-sm font-semibold mb-3" style={{ color: '#8B4A36' }}>
+                Tildá los que ya realizaste:
               </p>
               <MaintenanceChecklist
                 vehicleId={vehicle.id}
@@ -116,9 +116,9 @@ export default async function VehicleDetailPage({ params }: { params: Promise<{ 
 
         {/* PENDIENTES normales */}
         {normalPendingTasks.length > 0 && (
-          <div className="bg-yellow-50 border-2 border-yellow-200 rounded-3xl p-5 shadow-sm">
-            <h2 className="font-bold mb-1 text-yellow-800">⚠️ Pendientes</h2>
-            <p className="text-xs text-yellow-600 mb-3">Seleccioná los que ya hiciste para registrarlos</p>
+          <div className="rounded-3xl p-5 shadow-sm" style={{ background: '#FEF6EE', border: '1px solid #E8B4A0' }}>
+            <h2 className="font-bold mb-1" style={{ color: '#8B4A36' }}>⚠️ Para revisar</h2>
+            <p className="text-xs mb-3" style={{ color: '#C49080' }}>Seleccioná los que ya hiciste para registrarlos</p>
             <MaintenanceChecklist
               vehicleId={vehicle.id}
               tasks={normalPendingTasks}
@@ -129,9 +129,9 @@ export default async function VehicleDetailPage({ params }: { params: Promise<{ 
 
         {/* REALIZADOS */}
         {doneTasks.length > 0 && (
-          <div className="bg-white rounded-3xl p-5 shadow-sm">
-            <h2 className="font-bold mb-1 text-green-700">✅ Realizados</h2>
-            <p className="text-xs text-gray-400 mb-3">Tocá para desmarcar si te equivocaste</p>
+          <div className="bg-white rounded-3xl p-5 shadow-sm" style={{ border: '1px solid #F5DDD6' }}>
+            <h2 className="font-bold mb-1" style={{ color: '#4A9B6E' }}>✅ Realizados</h2>
+            <p className="text-xs mb-3" style={{ color: '#C49080' }}>Tocá para desmarcar si te equivocaste</p>
             <MaintenanceChecklist
               vehicleId={vehicle.id}
               tasks={doneTasks}
