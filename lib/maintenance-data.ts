@@ -45,6 +45,8 @@ export type CarModel = {
   brand: string
   name: string
   emoji: string
+  year_from: number
+  year_to: number | null  // null = sigue en producción
   versions: string[]
   engineOptions: string[]
   schedule: TaskDef[]
@@ -86,6 +88,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Ford',
     name: 'Ranger',
     emoji: '🛻',
+    year_from: 2012,
+    year_to: null,
     versions: ['XL', 'XLS', 'XLT', 'Limited', 'Storm', 'Raptor'],
     engineOptions: ['2.2 TDCi 160cv', '3.2 TDCi 200cv', '2.0 Bi-Turbo 213cv'],
     schedule: [
@@ -120,6 +124,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Toyota',
     name: 'Hilux',
     emoji: '🛻',
+    year_from: 2016,
+    year_to: null,
     versions: ['DX', 'SR', 'SRV', 'SRX', '4x2', '4x4'],
     engineOptions: ['2.4 GD 150cv', '2.8 GD-6 204cv', '2.7 VVT-i 166cv (nafta)'],
     schedule: [
@@ -152,6 +158,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Volkswagen',
     name: 'Amarok',
     emoji: '🛻',
+    year_from: 2011,
+    year_to: null,
     versions: ['Trendline', 'Comfortline', 'Highline', 'Extreme', 'V6 Extreme'],
     engineOptions: ['2.0 TDI 140cv', '2.0 TDI BiTurbo 180cv', '3.0 V6 TDI 258cv'],
     schedule: [
@@ -181,6 +189,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Toyota',
     name: 'Corolla',
     emoji: '🚗',
+    year_from: 2019,
+    year_to: null,
     versions: ['XLi', 'Gli', 'SEG', 'GR-S', 'Hybrid'],
     engineOptions: ['2.0 Dynamic Force 172cv', '1.8 Dual VVT-i 140cv', '1.8 Híbrido 122cv'],
     schedule: [
@@ -207,6 +217,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Volkswagen',
     name: 'Polo',
     emoji: '🚗',
+    year_from: 2018,
+    year_to: null,
     versions: ['Trendline', 'Comfortline', 'Highline', 'GTS'],
     engineOptions: ['1.6 MSI 110cv', '1.0 TSI 95cv', '1.4 TSI 125cv'],
     schedule: [
@@ -233,6 +245,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Peugeot',
     name: '208',
     emoji: '🚗',
+    year_from: 2020,
+    year_to: null,
     versions: ['Like', 'Active', 'Allure', 'GT Line', 'GT'],
     engineOptions: ['1.2 PureTech 82cv', '1.2 PureTech 110cv Turbo', '1.6 THP 165cv'],
     schedule: [
@@ -258,6 +272,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Renault',
     name: 'Sandero / Logan',
     emoji: '🚗',
+    year_from: 2012,
+    year_to: null,
     versions: ['Authentique', 'Expression', 'Privilege', 'Stepway', 'RS'],
     engineOptions: ['1.0 16V 75cv', '1.6 16V 110cv', '1.0 Turbo 90cv'],
     schedule: [
@@ -282,6 +298,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Chevrolet',
     name: 'Onix',
     emoji: '🚗',
+    year_from: 2020,
+    year_to: null,
     versions: ['Joy', 'LS', 'LT', 'LTZ', 'RS', 'Premier'],
     engineOptions: ['1.0 Turbo 116cv', '1.2 Aspirado 75cv (nuevo)', '1.4 Aspirado 98cv'],
     schedule: [
@@ -308,6 +326,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Fiat',
     name: 'Cronos',
     emoji: '🚗',
+    year_from: 2018,
+    year_to: null,
     versions: ['Like', 'Drive', 'Precision', 'HGT'],
     engineOptions: ['1.3 Firefly 101cv', '1.8 E.torQ 135cv'],
     schedule: [
@@ -333,6 +353,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Chevrolet',
     name: 'Tracker',
     emoji: '🚙',
+    year_from: 2020,
+    year_to: null,
     versions: ['LS', 'LT', 'LTZ', 'Premier', 'RS'],
     engineOptions: ['1.0 Turbo 116cv', '1.2 Turbo 133cv'],
     schedule: [
@@ -358,6 +380,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Toyota',
     name: 'Yaris',
     emoji: '🚗',
+    year_from: 2018,
+    year_to: null,
     versions: ['XL', 'XLS', 'XLS Connect', 'S', 'GR-S'],
     engineOptions: ['1.5 Dual VVT-i 107cv'],
     schedule: [
@@ -382,6 +406,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Nissan',
     name: 'Kicks',
     emoji: '🚙',
+    year_from: 2017,
+    year_to: null,
     versions: ['Sense', 'Advance', 'Exclusive', 'SR'],
     engineOptions: ['1.6 16V 114cv', '1.0 Turbo 116cv'],
     schedule: [
@@ -406,6 +432,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Toyota',
     name: 'Corolla Cross',
     emoji: '🚙',
+    year_from: 2021,
+    year_to: null,
     versions: ['XLi', 'Gli', 'SEG', 'GR-S'],
     engineOptions: ['2.0 Dynamic Force 172cv', '1.8 Híbrido 122cv'],
     schedule: [
@@ -430,6 +458,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Renault',
     name: 'Duster / Oroch',
     emoji: '🚙',
+    year_from: 2018,
+    year_to: null,
     versions: ['Authentique', 'Expression', 'Dynamique', 'Iconic', 'Oroch'],
     engineOptions: ['1.6 16V 114cv', '2.0 16V 143cv', '1.3 Turbo 150cv'],
     schedule: [
@@ -454,6 +484,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Fiat',
     name: 'Strada',
     emoji: '🛻',
+    year_from: 2020,
+    year_to: null,
     versions: ['Freedom', 'Endurance', 'Volcano', 'Ultra'],
     engineOptions: ['1.3 Firefly 101cv', '1.4 Fire 86cv'],
     schedule: [
@@ -477,6 +509,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Mitsubishi',
     name: 'L200 / Triton',
     emoji: '🛻',
+    year_from: 2015,
+    year_to: null,
     versions: ['GL', 'GLS', 'HPE', 'Triton Sport'],
     engineOptions: ['2.4 MIVEC Diesel 181cv', '2.5 DI-D Diesel 136cv'],
     schedule: [
@@ -502,6 +536,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Kia',
     name: 'Sportage',
     emoji: '🚙',
+    year_from: 2016,
+    year_to: null,
     versions: ['LX', 'EX', 'SX', 'GT Line', 'Gravity'],
     engineOptions: ['2.0 MPi 150cv', '1.6 T-GDi 177cv', '2.0 CRDi Diesel 136cv'],
     schedule: [
@@ -526,6 +562,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Nissan',
     name: 'Frontier',
     emoji: '🛻',
+    year_from: 2017,
+    year_to: null,
     versions: ['S', 'SV', 'SL', 'Pro-4X'],
     engineOptions: ['2.3 Bi-Turbo Diesel 190cv', '2.5 Diesel 170cv'],
     schedule: [
@@ -551,6 +589,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Jeep',
     name: 'Renegade',
     emoji: '🚙',
+    year_from: 2015,
+    year_to: null,
     versions: ['Sport', 'Longitude', 'Limited', 'Trailhawk', '80 Aniversario'],
     engineOptions: ['1.3 Turbo T4 150cv', '1.8 16V E.torQ 139cv', '2.0 Turbo Diesel 170cv'],
     schedule: [
@@ -576,6 +616,8 @@ export const CAR_MODELS: CarModel[] = [
     brand: 'Volkswagen',
     name: 'Virtus',
     emoji: '🚗',
+    year_from: 2018,
+    year_to: null,
     versions: ['Trendline', 'Comfortline', 'Highline', 'GTS'],
     engineOptions: ['1.6 MSI 110cv', '1.0 TSI 95cv'],
     schedule: [
