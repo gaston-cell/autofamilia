@@ -21,9 +21,9 @@ export default function OilServiceSection({ vehicleId, lastOilKm, lastOilDate, c
 
   if (!lastOilKm || editing) {
     return (
-      <div className="bg-white rounded-3xl p-5 shadow-sm border-2 border-gray-100">
-        <h2 className="font-bold mb-2" style={{ color: '#1e3a5f' }}>🛢️ Cambio de aceite y filtro</h2>
-        <p className="text-sm text-gray-500 mb-3">
+      <div className="bg-white rounded-3xl p-5 shadow-sm" style={{ border: '1.5px solid #F5DDD6' }}>
+        <h2 className="font-bold mb-2" style={{ color: '#5C2A1E' }}>🛢️ Cambio de aceite y filtro</h2>
+        <p className="text-sm mb-3" style={{ color: '#A07060' }}>
           {editing ? 'Actualizá el último cambio de aceite:' : '¿En qué kilometraje fue tu último cambio de aceite y filtro?'}
         </p>
         <OilServiceForm vehicleId={vehicleId} onCancel={editing ? () => setEditing(false) : undefined} />
@@ -33,35 +33,33 @@ export default function OilServiceSection({ vehicleId, lastOilKm, lastOilDate, c
 
   if (isCritical) {
     return (
-      <div className="rounded-3xl overflow-hidden shadow-lg border-2 border-red-500">
-        {/* Barra de emergencia */}
-        <div className="bg-red-600 px-5 py-3 flex items-center gap-3">
+      <div className="rounded-3xl overflow-hidden shadow-lg" style={{ border: '2px solid #D94F3D' }}>
+        <div className="px-5 py-3 flex items-center gap-3" style={{ background: '#D94F3D' }}>
           <span className="text-2xl">🚨</span>
           <div>
-            <p className="text-white font-black text-base">ACEITE MUY VENCIDO</p>
-            <p className="text-red-100 text-xs">Riesgo real de daño al motor</p>
+            <p className="text-white font-black text-base">Aceite muy vencido</p>
+            <p className="text-xs" style={{ color: '#FFD5CC' }}>Riesgo real de daño al motor</p>
           </div>
         </div>
-        <div className="bg-red-50 p-5">
-          <p className="text-red-800 font-bold text-lg mb-1">
+        <div className="p-5" style={{ background: '#FFF5F2' }}>
+          <p className="font-bold text-lg mb-1" style={{ color: '#D94F3D' }}>
             Pasado por {kmOverdue.toLocaleString()} km
           </p>
-          <p className="text-red-600 text-sm mb-4">
+          <p className="text-sm mb-4" style={{ color: '#8B4A36' }}>
             Último cambio a los {lastOilKm.toLocaleString()} km
             {lastOilDate && ` · ${new Date(lastOilDate).toLocaleDateString('es-AR')}`}.
-            Circular más tiempo sin cambiarlo puede dañar el motor permanentemente.
+            Circular más sin cambiarlo puede dañar el motor permanentemente.
           </p>
-          <div className="bg-red-100 border border-red-300 rounded-2xl p-3 mb-4">
-            <p className="text-red-700 text-sm font-semibold">⚡ Qué hacer ahora:</p>
-            <p className="text-red-600 text-sm mt-1">Llevá el auto a un lubricentro hoy o mañana. No esperes al próximo service.</p>
+          <div className="rounded-2xl p-3 mb-4" style={{ background: '#FFF0EB', border: '1px solid #F5DDD6' }}>
+            <p className="text-sm font-semibold" style={{ color: '#8B4A36' }}>⚡ Qué hacer ahora:</p>
+            <p className="text-sm mt-1" style={{ color: '#A07060' }}>Llevá el auto a un lubricentro hoy o mañana. No esperes al próximo service.</p>
           </div>
-          <div className="flex gap-2">
-            <button
-              onClick={() => setEditing(true)}
-              className="flex-1 py-3 rounded-2xl font-bold text-white text-sm bg-red-600">
-              Ya lo cambié — registrar
-            </button>
-          </div>
+          <button
+            onClick={() => setEditing(true)}
+            className="w-full py-3 rounded-2xl font-bold text-white text-sm"
+            style={{ background: '#D94F3D' }}>
+            Ya lo cambié — registrar
+          </button>
         </div>
       </div>
     )
@@ -69,55 +67,53 @@ export default function OilServiceSection({ vehicleId, lastOilKm, lastOilDate, c
 
   if (oilOverdue) {
     return (
-      <div className="rounded-3xl overflow-hidden shadow-md border-2 border-orange-400">
-        <div className="bg-orange-500 px-5 py-3 flex items-center gap-3">
+      <div className="rounded-3xl overflow-hidden shadow-md" style={{ border: '2px solid #E8B84B' }}>
+        <div className="px-5 py-3 flex items-center gap-3" style={{ background: '#E8B84B' }}>
           <span className="text-2xl">⚠️</span>
           <div>
-            <p className="text-white font-black text-base">CAMBIO DE ACEITE VENCIDO</p>
-            <p className="text-orange-100 text-xs">Hacelo lo antes posible</p>
+            <p className="text-white font-black text-base">Cambio de aceite vencido</p>
+            <p className="text-xs" style={{ color: 'rgba(255,255,255,0.85)' }}>Hacelo lo antes posible</p>
           </div>
         </div>
-        <div className="bg-orange-50 p-5">
-          <p className="text-orange-800 font-bold text-lg mb-1">
+        <div className="p-5" style={{ background: '#FFFBF0' }}>
+          <p className="font-bold text-lg mb-1" style={{ color: '#8B6800' }}>
             Pasado por {kmOverdue.toLocaleString()} km
           </p>
-          <p className="text-orange-700 text-sm mb-4">
+          <p className="text-sm mb-4" style={{ color: '#A07060' }}>
             Último cambio a los {lastOilKm.toLocaleString()} km
             {lastOilDate && ` · ${new Date(lastOilDate).toLocaleDateString('es-AR')}`}.
             El aceite viejo desgasta el motor más rápido.
           </p>
-          <div className="flex gap-2">
-            <button
-              onClick={() => setEditing(true)}
-              className="flex-1 py-3 rounded-2xl font-bold text-white text-sm bg-orange-500">
-              Ya lo cambié — registrar
-            </button>
-          </div>
+          <button
+            onClick={() => setEditing(true)}
+            className="w-full py-3 rounded-2xl font-bold text-white text-sm"
+            style={{ background: '#E8B84B' }}>
+            Ya lo cambié — registrar
+          </button>
         </div>
       </div>
     )
   }
 
-  // Todo bien
   const pct = Math.min(((10000 - oilKmLeft!) / 10000) * 100, 100)
-  const barColor = oilKmLeft! < 1000 ? '#f59e0b' : '#10b981'
+  const barColor = oilKmLeft! < 1000 ? '#E8B84B' : '#7CB897'
 
   return (
-    <div className="bg-white rounded-3xl p-5 shadow-sm border-2 border-gray-100">
-      <h2 className="font-bold mb-3" style={{ color: '#1e3a5f' }}>🛢️ Cambio de aceite y filtro</h2>
-      <div className="flex justify-between text-xs text-gray-500 mb-1">
+    <div className="bg-white rounded-3xl p-5 shadow-sm" style={{ border: '1.5px solid #F5DDD6' }}>
+      <h2 className="font-bold mb-3" style={{ color: '#5C2A1E' }}>🛢️ Cambio de aceite y filtro</h2>
+      <div className="flex justify-between text-xs mb-1" style={{ color: '#C49080' }}>
         <span>Último: {lastOilKm.toLocaleString()} km</span>
         <span style={{ color: barColor }}>Próximo: {nextOilKm!.toLocaleString()} km</span>
       </div>
-      <div className="w-full bg-gray-100 rounded-full h-3 mb-2">
-        <div className="h-3 rounded-full transition-all" style={{ width: `${pct}%`, background: barColor }} />
+      <div className="w-full rounded-full h-2.5 mb-2" style={{ background: '#F5DDD6' }}>
+        <div className="h-2.5 rounded-full transition-all" style={{ width: `${pct}%`, background: barColor }} />
       </div>
       <p className="text-sm font-semibold" style={{ color: barColor }}>
         {oilKmLeft! < 1000
           ? `⚡ Quedan solo ${oilKmLeft!.toLocaleString()} km — agendalo ya`
           : `✅ Quedan ${oilKmLeft!.toLocaleString()} km para el próximo cambio`}
       </p>
-      <button onClick={() => setEditing(true)} className="mt-2 text-xs text-blue-500 underline">
+      <button onClick={() => setEditing(true)} className="mt-2 text-xs underline" style={{ color: '#C97B5A' }}>
         Actualizar último cambio
       </button>
     </div>

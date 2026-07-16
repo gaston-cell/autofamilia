@@ -25,7 +25,6 @@ export default function WashSection({ vehicleId, lastWashDate, lastTeflonDate, w
     ? Math.floor((new Date().getTime() - new Date(lastTeflonDate).getTime()) / (1000 * 60 * 60 * 24))
     : null
 
-  // Recomendación de lavado según perfil
   const washFrequency = sleepsIn === 'calle' ? 14 : 21
   const teflonFrequency = sleepsIn === 'costera' ? 90 : 180
 
@@ -52,21 +51,24 @@ export default function WashSection({ vehicleId, lastWashDate, lastTeflonDate, w
   }
 
   return (
-    <div className="bg-white rounded-3xl p-5 shadow-sm">
+    <div className="bg-white rounded-3xl p-5 shadow-sm" style={{ border: '1.5px solid #F5DDD6' }}>
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h2 className="font-bold" style={{ color: '#1e3a5f' }}>🧽 Lavados</h2>
-          <p className="text-xs text-gray-400">{washCount} lavados registrados</p>
+          <h2 className="font-bold" style={{ color: '#5C2A1E' }}>🧽 Lavados</h2>
+          <p className="text-xs" style={{ color: '#C49080' }}>{washCount} lavados registrados</p>
         </div>
       </div>
 
       <div className="space-y-3">
         {/* Lavado */}
-        <div className={`rounded-2xl p-4 border-2 ${washDue ? 'bg-blue-50 border-blue-200' : 'bg-gray-50 border-gray-100'}`}>
+        <div className="rounded-2xl p-4" style={{
+          background: washDue ? '#FFF0EB' : '#FFF5F2',
+          border: `1.5px solid ${washDue ? '#E8B4A0' : '#F5DDD6'}`,
+        }}>
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-semibold text-sm text-gray-800">Lavado exterior</p>
-              <p className="text-xs text-gray-500 mt-0.5">
+              <p className="font-semibold text-sm" style={{ color: '#3D1810' }}>Lavado exterior</p>
+              <p className="text-xs mt-0.5" style={{ color: '#C49080' }}>
                 {daysSinceWash === null
                   ? 'Sin registros aún'
                   : daysSinceWash === 0
@@ -74,7 +76,7 @@ export default function WashSection({ vehicleId, lastWashDate, lastTeflonDate, w
                   : `Hace ${daysSinceWash} días`}
               </p>
               {washDue && (
-                <p className="text-xs text-blue-600 font-semibold mt-1">
+                <p className="text-xs font-semibold mt-1" style={{ color: '#C97B5A' }}>
                   💧 Ya es momento de lavarlo
                 </p>
               )}
@@ -83,18 +85,21 @@ export default function WashSection({ vehicleId, lastWashDate, lastTeflonDate, w
               onClick={() => registerWash('wash')}
               disabled={loading}
               className="text-sm font-bold text-white px-4 py-2 rounded-xl"
-              style={{ background: '#0ea5e9' }}>
+              style={{ background: '#C97B5A' }}>
               Registrar
             </button>
           </div>
         </div>
 
         {/* Teflón */}
-        <div className={`rounded-2xl p-4 border-2 ${teflonDue ? 'bg-yellow-50 border-yellow-200' : 'bg-gray-50 border-gray-100'}`}>
+        <div className="rounded-2xl p-4" style={{
+          background: teflonDue ? '#FFFBF0' : '#FFF5F2',
+          border: `1.5px solid ${teflonDue ? '#E8B84B' : '#F5DDD6'}`,
+        }}>
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-semibold text-sm text-gray-800">Lavado con teflón / cera</p>
-              <p className="text-xs text-gray-500 mt-0.5">
+              <p className="font-semibold text-sm" style={{ color: '#3D1810' }}>Lavado con teflón / cera</p>
+              <p className="text-xs mt-0.5" style={{ color: '#C49080' }}>
                 {daysSinceTeflon === null
                   ? 'Sin registros aún'
                   : daysSinceTeflon === 0
@@ -102,12 +107,12 @@ export default function WashSection({ vehicleId, lastWashDate, lastTeflonDate, w
                   : `Hace ${daysSinceTeflon} días`}
               </p>
               {teflonDue && (
-                <p className="text-xs text-yellow-600 font-semibold mt-1">
+                <p className="text-xs font-semibold mt-1" style={{ color: '#8B6800' }}>
                   ✨ Toca proteger la pintura
                 </p>
               )}
               {!lastTeflonDate && (
-                <p className="text-xs text-gray-400 mt-1">
+                <p className="text-xs mt-1" style={{ color: '#C49080' }}>
                   Recomendado cada {teflonFrequency / 30} meses
                 </p>
               )}
@@ -116,7 +121,7 @@ export default function WashSection({ vehicleId, lastWashDate, lastTeflonDate, w
               onClick={() => registerWash('teflon')}
               disabled={loading}
               className="text-sm font-bold text-white px-4 py-2 rounded-xl"
-              style={{ background: '#f59e0b' }}>
+              style={{ background: '#E8B84B' }}>
               Registrar
             </button>
           </div>

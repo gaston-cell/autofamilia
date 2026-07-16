@@ -25,7 +25,6 @@ export default function TiresSection({ vehicleId, tiresKm, tiresDot, tiresInstal
   const kmOnTires = tiresKm ? currentKm - tiresKm : null
   const tireWearPct = kmOnTires ? Math.min((kmOnTires / 50000) * 100, 100) : 0
 
-  // DOT: últimos 4 dígitos = semana + año (ej: 2423 = semana 24 de 2023)
   const dotAge = tiresDot && tiresDot.length >= 4 ? (() => {
     const week = parseInt(tiresDot.slice(-4, -2))
     const year = parseInt('20' + tiresDot.slice(-2))
@@ -54,39 +53,46 @@ export default function TiresSection({ vehicleId, tiresKm, tiresDot, tiresInstal
     router.refresh()
   }
 
-  const wearColor = tireWearPct > 80 ? '#ef4444' : tireWearPct > 60 ? '#f59e0b' : '#10b981'
+  const wearColor = tireWearPct > 80 ? '#D94F3D' : tireWearPct > 60 ? '#E8B84B' : '#7CB897'
+
+  const inputStyle = {
+    background: '#FFF5F2',
+    border: '1.5px solid #F5DDD6',
+    color: '#3D1810',
+  }
 
   return (
-    <div className="bg-white rounded-3xl p-5 shadow-sm">
+    <div className="bg-white rounded-3xl p-5 shadow-sm" style={{ border: '1.5px solid #F5DDD6' }}>
       <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between">
         <div className="text-left">
-          <h2 className="font-bold" style={{ color: '#1e3a5f' }}>🛞 Neumáticos</h2>
+          <h2 className="font-bold" style={{ color: '#5C2A1E' }}>🛞 Neumáticos</h2>
           {!open && tiresKm && (
-            <p className="text-xs text-gray-400 mt-0.5">
+            <p className="text-xs mt-0.5" style={{ color: '#C49080' }}>
               {kmOnTires?.toLocaleString()} km de uso · {tireWearPct.toFixed(0)}% de vida útil
             </p>
           )}
         </div>
-        <span className="text-gray-400 text-sm">{open ? '▲' : '▼'}</span>
+        <span className="text-sm" style={{ color: '#C49080' }}>{open ? '▲' : '▼'}</span>
       </button>
 
-      {/* Resumen cuando está cerrado */}
       {!open && tiresKm && (
         <div className="mt-3 space-y-3">
           <div>
-            <div className="flex justify-between text-xs text-gray-500 mb-1">
+            <div className="flex justify-between text-xs mb-1" style={{ color: '#C49080' }}>
               <span>Desgaste estimado</span>
-              <span style={{ color: wearColor }}>{kmOnTires?.toLocaleString()} / 50,000 km</span>
+              <span style={{ color: wearColor }}>{kmOnTires?.toLocaleString()} / 50.000 km</span>
             </div>
-            <div className="w-full bg-gray-100 rounded-full h-3">
-              <div className="h-3 rounded-full transition-all" style={{ width: `${tireWearPct}%`, background: wearColor }} />
+            <div className="w-full rounded-full h-2.5" style={{ background: '#F5DDD6' }}>
+              <div className="h-2.5 rounded-full transition-all" style={{ width: `${tireWearPct}%`, background: wearColor }} />
             </div>
           </div>
 
           {dotAge !== null && (
-            <div className={`flex items-center gap-2 px-3 py-2 rounded-xl text-sm ${
-              dotDanger ? 'bg-red-50 text-red-700' : dotWarning ? 'bg-yellow-50 text-yellow-700' : 'bg-green-50 text-green-700'
-            }`}>
+            <div className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm"
+              style={{
+                background: dotDanger ? '#FFF0EB' : dotWarning ? '#FFFBF0' : '#F0FBF5',
+                color: dotDanger ? '#D94F3D' : dotWarning ? '#8B6800' : '#4A9B6E',
+              }}>
               {dotDanger ? '🔴' : dotWarning ? '🟡' : '✅'}
               <span className="font-medium">
                 {dotDanger
@@ -103,26 +109,29 @@ export default function TiresSection({ vehicleId, tiresKm, tiresDot, tiresInstal
       {open && (
         <div className="mt-4 space-y-4">
           <div>
-            <label className="text-xs font-semibold text-gray-600 block mb-1">
-              ¿En qué km instalaste los neumáticos actuales?
+            <label className="text-xs font-semibold uppercase tracking-wide block mb-1.5" style={{ color: '#C49080' }}>
+              ¿En qué km instalaste los neumáticos?
             </label>
             <input
               type="number"
               value={km}
               onChange={e => setKm(e.target.value)}
               placeholder="Ej: 80000"
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm focus:outline-none focus:border-blue-400"
+              className="w-full px-4 py-3 rounded-2xl text-sm focus:outline-none transition-all"
+              style={inputStyle}
+              onFocus={e => (e.target.style.borderColor = '#C97B5A')}
+              onBlur={e => (e.target.style.borderColor = '#F5DDD6')}
             />
             {km && (
-              <p className="text-xs text-gray-400 mt-1">
+              <p className="text-xs mt-1" style={{ color: '#C49080' }}>
                 Llevan {(currentKm - parseInt(km)).toLocaleString()} km de uso
               </p>
             )}
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-gray-600 block mb-1">
-              Código DOT <span className="text-gray-400 font-normal">(últimos 4 dígitos del lateral del neumático)</span>
+            <label className="text-xs font-semibold uppercase tracking-wide block mb-1.5" style={{ color: '#C49080' }}>
+              Código DOT <span style={{ fontWeight: 400 }}>(últimos 4 dígitos del lateral)</span>
             </label>
             <input
               type="text"
@@ -130,22 +139,28 @@ export default function TiresSection({ vehicleId, tiresKm, tiresDot, tiresInstal
               onChange={e => setDot(e.target.value)}
               placeholder="Ej: 2423 (semana 24, año 2023)"
               maxLength={10}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm focus:outline-none focus:border-blue-400"
+              className="w-full px-4 py-3 rounded-2xl text-sm focus:outline-none transition-all"
+              style={inputStyle}
+              onFocus={e => (e.target.style.borderColor = '#C97B5A')}
+              onBlur={e => (e.target.style.borderColor = '#F5DDD6')}
             />
-            <p className="text-xs text-gray-400 mt-1">
+            <p className="text-xs mt-1" style={{ color: '#C49080' }}>
               El DOT está en relieve en el lateral. Te dice cuándo fueron fabricados.
             </p>
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-gray-600 block mb-1">
-              Fecha de instalación <span className="text-gray-400 font-normal">(opcional)</span>
+            <label className="text-xs font-semibold uppercase tracking-wide block mb-1.5" style={{ color: '#C49080' }}>
+              Fecha de instalación <span style={{ fontWeight: 400 }}>(opcional)</span>
             </label>
             <input
               type="date"
               value={installedDate}
               onChange={e => setInstalledDate(e.target.value)}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm focus:outline-none focus:border-blue-400"
+              className="w-full px-4 py-3 rounded-2xl text-sm focus:outline-none transition-all"
+              style={inputStyle}
+              onFocus={e => (e.target.style.borderColor = '#C97B5A')}
+              onBlur={e => (e.target.style.borderColor = '#F5DDD6')}
             />
           </div>
 
@@ -153,7 +168,7 @@ export default function TiresSection({ vehicleId, tiresKm, tiresDot, tiresInstal
             onClick={handleSave}
             disabled={loading}
             className="w-full py-3 rounded-2xl font-bold text-white"
-            style={{ background: saved ? '#10b981' : '#1e3a5f' }}>
+            style={{ background: saved ? '#7CB897' : '#C97B5A' }}>
             {loading ? 'Guardando...' : saved ? '✓ Guardado' : 'Guardar datos de neumáticos'}
           </button>
         </div>

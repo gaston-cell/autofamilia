@@ -10,6 +10,7 @@ import VehicleProfileSection from './VehicleProfileSection'
 import TiresSection from './TiresSection'
 import WashSection from './WashSection'
 import InsuranceSection from './InsuranceSection'
+import BatterySection from './BatterySection'
 
 export default async function VehicleDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -148,6 +149,13 @@ export default async function VehicleDetailPage({ params }: { params: Promise<{ 
           insurancePolicy={vehicle.insurance_policy}
           insuranceExpiry={vehicle.insurance_expiry}
           insuranceFileUrl={vehicle.insurance_file_url}
+        />
+
+        {/* Batería */}
+        <BatterySection
+          vehicleId={vehicle.id}
+          batteryInstalledDate={vehicle.battery_installed_date}
+          batteryBrand={vehicle.battery_brand}
         />
 
         {/* Neumáticos */}
