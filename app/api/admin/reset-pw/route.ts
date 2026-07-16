@@ -16,7 +16,8 @@ export async function GET(request: Request) {
   const user = users?.users?.find(u => u.email === 'gastonjrubin@gmail.com')
 
   if (!user) {
-    return NextResponse.json({ error: 'User not found' }, { status: 404 })
+    const emails = users?.users?.map(u => u.email)
+    return NextResponse.json({ error: 'User not found', registered_emails: emails }, { status: 404 })
   }
 
   const { error } = await supabase.auth.admin.updateUserById(user.id, {
